@@ -1,5 +1,5 @@
 const defaultState = {
-  post: []
+  post: null
 }
 
 const ADD_RANDOM = "ADD_RANDOM"

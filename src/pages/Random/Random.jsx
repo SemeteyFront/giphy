@@ -6,7 +6,7 @@ import './random.css'
 
 function Random() {
   const dispatch = useDispatch()
-  const random = useSelector(state => state.random.post.data)
+  const random = useSelector(state => state.random.post)
   console.log(random)
   
   useEffect(() => {
@@ -14,7 +14,7 @@ function Random() {
   },[])
 
   return (
-      <div><img className='random__img' src={random.images.downsized.url}/></div>
+      <div><img className='random__img' src={random.data.images.downsized.url}/></div>
   );
 }
 
