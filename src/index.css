@@ -14,21 +14,10 @@ code {
     monospace;
 }
 
-.header {
-  height: 100px;
-  text-align: center;
-  background: rgb(99, 20, 92);
+a {
+  text-decoration: none;
 }
 
-.header__tranding {
-  width: 100px;
-  height: 25px;
-  background-color: blue;
-  margin: 30px;
-}
-.header__random {
-  width: 100px;
-  height: 25px;
-  background-color: chartreuse;
-  margin: 30px;
+.action {
+  color: red;
 }

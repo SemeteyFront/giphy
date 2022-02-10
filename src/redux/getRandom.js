@@ -1,13 +1,27 @@
-const defaultState = {
-  post: null
-}
+import axios from "../api/axios"
 
 const ADD_RANDOM = "ADD_RANDOM"
 
-export const RandomReducer = (state = defaultState, action) => {
+export const getRandom = () => {
+  return async dispatch => {
+    try {
+      const { data } = await axios.get(`/random`, {
+        params: {
+          rating: "g"
+        }
+      })
+      dispatch({type: "ADD_RANDOM", payload: data.data })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+
+export const RandomReducer = (state = {}, action) => {
   switch(action.type) {
     case ADD_RANDOM:
-      return {...state, post: action.payload}
+      return action.payload
     default:
       return state
   }

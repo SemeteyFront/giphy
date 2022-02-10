@@ -5,6 +5,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './redux/store'
+import axios from 'axios';
+
 
 
 ReactDOM.render(

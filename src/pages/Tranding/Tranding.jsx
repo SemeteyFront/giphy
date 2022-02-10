@@ -1,28 +1,47 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getTranding } from '../../api/rendering';
-import './tranding.css'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getTranding } from "../../redux/getTranding";
+import "./tranding.css";
 
 function Tranding() {
-  const dispatch = useDispatch()
-  const tranding = useSelector(state => state.tranding.posts.data)
-
-
+  const dispatch = useDispatch();
+  const tranding = useSelector((state) => state.tranding.data);
+  const loading = useSelector((state) => state.tranding.loading);
 
   useEffect(() => {
-    
-      dispatch(getTranding())
-  },[])
+    let offset = 10;
+    let isLoaded = !loading;
+    document.addEventListener("scroll", () => {
+      const el = document.body;
+      if (window.scrollY + window.innerHeight >= el.scrollHeight && isLoaded) {
+        dispatch(getTranding({ offset })).then(() => {
+          isLoaded = true;
+        });
+        isLoaded = false;
+        offset += 10;
+      }
+    });
+  }, []);
 
-  return <div className='tranding'>
-    {
-      tranding ? 
-      tranding.map(item => {
-        return <img className='tranding__img tranding__hover' key={item.id} src={item.images.downsized.url}/>
-      }) :
-      'loading ...'
-    }
-  </div>;
+  useEffect(() => {
+    dispatch(getTranding());
+  }, []);
+
+  return (
+    <div className="tranding">
+      {tranding.length > 0 &&
+        tranding.map((item) => {
+          return (
+            <img
+              className="tranding__img tranding__hover"
+              key={item.id}
+              src={item.images.downsized.url}
+            />
+          );
+        })}
+      {loading && "Loading..."}
+    </div>
+  );
 }
 
 export default Tranding;
