@@ -28,7 +28,8 @@ function Tranding() {
   }, []);
 
   return (
-    <div className="tranding">
+    <div>
+      <div className="tranding">
       {tranding.length > 0 &&
         tranding.map((item) => {
           return (
@@ -40,6 +41,7 @@ function Tranding() {
           );
         })}
       {loading && "Loading..."}
+    </div>
     </div>
   );
 }
