@@ -1,15 +1,14 @@
-import { Link } from "react-router-dom";
-import './header.css'
+import React from 'react';
+import {Link} from "react-router-dom";
+import './header.scss'
 
-
-function Header({onOpen}) {
-  return (
+const Header = () => {
+    return (
     <header className="header">
-      <Link className="header__tranding" to={'/'}>Tranding</Link>
-      <Link className="header__random" to={'/random'}>Random</Link>
-      <button className="header__btn" onClick={onOpen}>Categories</button>
+      <Link to="/" type="button" className="header__tranding">Trending</Link>
+      <Link to="/random" type="button" className="header__random">Random</Link>
     </header>
-  );
-}
+    );
+};
 
 export default Header;

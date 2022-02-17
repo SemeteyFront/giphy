@@ -1,0 +1,25 @@
+.categories {
+  background: url('https://i.pinimg.com/originals/08/ce/99/08ce99af0105df29a1981b7174e8d2fc.gif');
+  display: grid;
+  align-self: start;
+  border-right: 2px solid red;
+  
+
+  .categories__title {
+    color: #FF8E00;
+  }
+
+  .categories__name p a{
+    display: block;
+    width: 120px;
+    color: #370665;
+    background: white;
+    border-radius: 3px;
+    border: 1px solid #FF8E00;
+  }
+
+  .categories__name p a:hover{
+    background-color: aqua;
+    color: #000000;
+  }
+}

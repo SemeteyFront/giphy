@@ -1,38 +1,33 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { getCategories } from "../../redux/categories";
-import "./categories.css";
+import React, {useEffect} from 'react';
+import {useDispatch} from "react-redux";
+import { GetSubcategories} from "../../redux/Actions/GetSubcategories";
+import { CategoryNull } from '../../redux/Actions/GetCategoryNull';
+import { GetCategories } from '../../redux/Actions/GetCategories';
+import {Link} from "react-router-dom";
+import './categories.scss'
 
-function Categories({ onClose }) {
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getCategories());
-  }, []);
-  const categories = useSelector((state) => state.categories);
+const Categories = ({mapCategory}) => {
+    const dispatch = useDispatch();
 
-  return (
-    <div>
-      <div className="overlay"></div>
-      <div className="categories">
-        <div className="categories__header">
-          <h2>Categories</h2>
-          <button className="categories__btn" onClick={onClose}>close</button>
-          
+    useEffect(() => {
+        dispatch(GetCategories())
+    }, []);
+    function btnCategory(name){
+        dispatch(CategoryNull())
+        dispatch(GetSubcategories(name))
+    }
+    const category = mapCategory.map(item => <p 
+        key={item.name_encoded}>
+        <Link onClick={() => btnCategory(item.name_encoded)} to={`/${item.name_encoded}`}>{item.name_encoded}</Link></p>);
+    return (
+        <div className='categories'>
+            <h3 className="categories__title">Categories</h3>
+            <div className="categories__name">
+            {category.length ? category : <h3>Загрузка...</h3>}
+            </div>
         </div>
-        <ul>
-        {categories.map(({ name }) => (
-          <li key={name}>
-            <NavLink to={`/categories/${name}`}>{name}</NavLink>
-          </li>
-        ))} 
-        </ul>
-        
-      </div>
-    </div>
-  );
-}
+    );
+};
 
 export default Categories;

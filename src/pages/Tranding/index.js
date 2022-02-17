@@ -1,1 +1,1 @@
-export { default } from './Tranding'
+export { default } from './Trending'
